@@ -9,9 +9,9 @@ const Header = (props) => {
 const Content = (props) => {
   return (
     <>
-      <Part part={props.parts.parts[0]} />
-      <Part part={props.parts.parts[1]} />
-      <Part part={props.parts.parts[2]} />
+      <Part part={props.course.parts[0]} />
+      <Part part={props.course.parts[1]} />
+      <Part part={props.course.parts[2]} />
     </>
   );
 };
@@ -32,9 +32,9 @@ const Total = (props) => {
       <p>
         Number of exercises{" "}
         {
-          props.parts.parts[0].exercises + 
-          props.parts.parts[1].exercises + 
-          props.parts.parts[2].exercises
+          props.course.parts[0].exercises + 
+          props.course.parts[1].exercises + 
+          props.course.parts[2].exercises
         }
       </p>
     </>
@@ -51,7 +51,7 @@ const App = () => {
       },
       {
         name: 'Using props to pass data',
-        exercises: 7
+        exercises: 7,
       },
       {
         name: 'State of a component',
@@ -64,10 +64,10 @@ const App = () => {
     <div>
       <Header course={course} />
       <Content
-        parts={course}
+        course={course}
       />
       <Total
-        parts={course}
+        course={course}
       />
     </div>
   );
