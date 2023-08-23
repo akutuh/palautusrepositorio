@@ -48,7 +48,9 @@ const App = () => {
   const namesToShow =
     filter === ""
       ? persons
-      : persons.filter((person) => person.name.includes(filter));
+      : persons.filter((person) =>
+          person.name.toLocaleLowerCase().includes(filter)
+        );
 
   return (
     <div>
