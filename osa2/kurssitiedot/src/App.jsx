@@ -2,7 +2,7 @@
 const Header = ({ course }) => {
   return (
     <>
-      <h1>{course.name}</h1>
+      <h2>{course.name}</h2>
     </>
   );
 };
@@ -49,7 +49,7 @@ const Course = ({ course }) => {
 };
 
 const App = () => {
-  const course = [
+  const courses = [
     {
       name: "Half Stack application development",
       id: 1,
@@ -96,7 +96,12 @@ const App = () => {
 
   return (
     <div>
-      <Course course={course} />
+      <h1>Web development curriculum</h1>
+      <div>
+        {courses.map((course) => (
+          <Course key={course.id} course={course} />
+        ))}
+      </div>
     </div>
   );
 };
