@@ -11,9 +11,9 @@ const Statistics = ({ good, neutral, bad, total }) => {
   }
   return (
     <div>
-      <Rating value={good} text="good" />
-      <Rating value={neutral} text="neutral" />
-      <Rating value={bad} text="bad" />
+      <StatisticLine ting value={good} text="good" />
+      <StatisticLine value={neutral} text="neutral" />
+      <StatisticLine value={bad} text="bad" />
       <p>all {total}</p>
       <Average good={good} bad={bad} total={total} />
       <Positive good={good} total={total} />
@@ -29,7 +29,7 @@ const Button = ({ handleClick, text }) => {
   );
 };
 
-const Rating = ({ text, value }) => {
+const StatisticLine = ({ text, value }) => {
   return (
     <>
       <p>
