@@ -2,6 +2,8 @@
 import { useState } from "react";
 
 const Statistics = ({ good, neutral, bad, total }) => {
+  const avg = (good - bad) / total;
+  const positive = (100 * good) / total;
   if (total === 0) {
     return (
       <div>
@@ -14,9 +16,9 @@ const Statistics = ({ good, neutral, bad, total }) => {
       <StatisticLine ting value={good} text="good" />
       <StatisticLine value={neutral} text="neutral" />
       <StatisticLine value={bad} text="bad" />
-      <p>all {total}</p>
-      <Average good={good} bad={bad} total={total} />
-      <Positive good={good} total={total} />
+      <StatisticLine value={total} text="all" />
+      <StatisticLine value={avg} text="average" />
+      <StatisticLine value={positive} text="positive" />
     </div>
   );
 };
@@ -32,35 +34,10 @@ const Button = ({ handleClick, text }) => {
 const StatisticLine = ({ text, value }) => {
   return (
     <>
-      <p>
-        {text} {value}
-      </p>
-    </>
-  );
-};
-
-const Average = ({ good, bad, total }) => {
-  if (total === 0) {
-    return <p>average 0</p>;
-  }
-  return (
-    <>
-      <p>average {(good - bad) / total}</p>
-    </>
-  );
-};
-
-const Positive = ({ good, total }) => {
-  if (total === 0) {
-    return (
-      <>
-        <p>positive 0</p>
-      </>
-    );
-  }
-  return (
-    <>
-      <p>positive {(100 * good) / total}%</p>
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
     </>
   );
 };
