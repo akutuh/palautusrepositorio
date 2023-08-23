@@ -12,7 +12,7 @@ const Content = ({ course }) => {
       {course.parts.map((crse) => (
         <Part course={crse} key={crse.id} />
       ))}
-      <Total course={course} />
+      <Total parts={course.parts} />
     </div>
   );
 };
@@ -27,15 +27,14 @@ const Part = ({ course }) => {
   );
 };
 
-const Total = ({ course }) => {
-  const allExercises = () => {
-    let all = 0;
-    course.parts.map((crse) => (all = all + crse.exercises));
-    return all;
-  };
+const Total = ({ parts }) => {
+  const allExercises = parts.reduce((sum, part) => {
+    console.log("sum+part", sum, part);
+    return sum + part.exercises;
+  }, 0);
   return (
     <div>
-      <b>total of {allExercises()} exercises</b>
+      <b>total of {allExercises} exercises</b>
     </div>
   );
 };
