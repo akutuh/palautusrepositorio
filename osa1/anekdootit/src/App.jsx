@@ -9,6 +9,12 @@ const Votes = ({ votes, selected }) => {
   );
 };
 
+const MostVotes = ({ votes, anecdotes }) => {
+  console.log(votes);
+  const most = Math.max(...votes);
+  return <div>{anecdotes[votes.indexOf(most)]}</div>;
+};
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -38,12 +44,15 @@ const App = () => {
 
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       {anecdotes[selected]}
-      <Votes votes={votes} selected={selected} />
       <div>
+        <Votes votes={votes} selected={selected} />
         <button onClick={handleVote}>vote</button>
         <button onClick={handleNextAnecdote}>next anecdote</button>
       </div>
+      <h2>Anecdote with most votes</h2>
+      <MostVotes votes={votes} anecdotes={anecdotes} />
     </div>
   );
 };
