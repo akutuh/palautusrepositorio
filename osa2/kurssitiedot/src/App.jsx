@@ -12,6 +12,7 @@ const Content = ({ course }) => {
       {course.parts.map((crse) => (
         <Part course={crse} key={crse.id} />
       ))}
+      <Total course={course} />
     </div>
   );
 };
@@ -26,16 +27,16 @@ const Part = ({ course }) => {
   );
 };
 
-const Total = (props) => {
+const Total = ({ course }) => {
+  const allExercises = () => {
+    let all = 0;
+    course.parts.map((crse) => (all = all + crse.exercises));
+    return all;
+  };
   return (
-    <>
-      <p>
-        Number of exercises{" "}
-        {props.course.parts[0].exercises +
-          props.course.parts[1].exercises +
-          props.course.parts[2].exercises}
-      </p>
-    </>
+    <div>
+      <b>total of {allExercises()} exercises</b>
+    </div>
   );
 };
 
