@@ -39,6 +39,23 @@ const App = () => {
     }
   }
 
+  const deletePerson = (id) => {
+    console.log(id)
+    const person = persons.find(p => p.id === id)
+    console.log('asd', person)
+    if(window.confirm(`Delete ${person.name}?`)) {
+      personService
+      .deletePerson(id)
+      .then(response => {
+        console.log(`delete succesful ${response.status}`)
+        setPersons(persons.filter(p => p.id !== id))
+      })
+      .catch(error => {
+        alert(`${person.name} has already been deleted`)
+      })
+    }
+  }
+
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
@@ -79,7 +96,7 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h3>Numbers</h3>
-      <Persons namesToShow={namesToShow} />
+      <Persons namesToShow={namesToShow} deletePerson={deletePerson} />
     </div>
   )
 }
