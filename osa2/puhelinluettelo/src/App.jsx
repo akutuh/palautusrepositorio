@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {useState, useEffect} from "react"
 import PersonForm from "./components/PersonForm"
 import Filter from "./components/Filter"
@@ -25,9 +26,16 @@ const App = () => {
       number: newNumber,
     }
     if (persons.some((p) => p.name === newName)) {
-      alert(`${newName} is already added to phonebook`)
-      setNewName("")
-      setNewNumber("")
+      if(window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+        const personToFind = persons.find(p => p.name === newName)
+        personService
+        .updatePerson(nameObject, personToFind.id)
+        .then(returnedPerson => {
+          setPersons(persons.map(person => person.id !== personToFind.id ? person : returnedPerson))
+          setNewName('')
+          setNewNumber('')
+        })
+      }
     } else {
       personService
         .create(nameObject)
